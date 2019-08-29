@@ -7,8 +7,7 @@ const queue = new Map();
 const express = require('express');
 const app = express();
 const http = require('http');
-    app.get("/", (request, response) => {
-    console.log(` az önce pinglenmedi. Sonra ponglanmadı... ya da başka bir şeyler olmadı.`);
+    app.get("/", (request, response) => {{    console.log(` az önce pinglenmedi. Sonra ponglanmadı... ya da başka bir şeyler olmadı.`);
     response.sendStatus(200);
     });
     app.listen(process.env.PORT);
@@ -250,7 +249,7 @@ function play(guild, song) {
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
 	 serverQueue.textChannel.sendEmbed(new Discord.RichEmbed()                                   
-  .setTitle("**Bot İsmi | 🎙 Müzik Başladı**",`https://cdn.discordapp.com/avatars/473974675194511361/6bb90de9efe9fb80081b185266bb94a6.png?size=2048`)
+  .setTitle("**AmilAmir Music | 🎙 Müzik Başladı**",`https://cdn.discordapp.com/avatars/473974675194511361/6bb90de9efe9fb80081b185266bb94a6.png?size=2048`)
   .setThumbnail(`https://i.ytimg.com/vi/${song.id}/default.jpg?width=80&height=60`)
   .addField('\nBaşlık', `[${song.title}](${song.url})`, true)
   .addField("\nSes Seviyesi", `${serverQueue.volume}%`, true)
@@ -348,23 +347,6 @@ client.elevation = message => {
 
 
 
-//EKSTRA KODLAR BU TARAFLARA EKLENECEK!
 
 
-
-
-
-client.on("message", message => {
-    const dmchannel = client.channels.find("name", "dm-log");
-    if (message.channel.type === "dm") {
-        if (message.author.bot) return;
-        dmchannel.sendMessage("", {embed: {
-            color: 3447003,
-            title: `Gönderen: ${message.author.tag}`,
-            description: `Bota Özelden Gönderilen DM: ${message.content}`
-        }})
-    }
-});
-
-
-client.login(ayarlar.token);
+client.login(ayarlar.token);m
