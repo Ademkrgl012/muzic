@@ -73,7 +73,7 @@ client.on('message', async msg => {
 					let index = 0;
           
 				 msg.channel.sendEmbed(new Discord.RichEmbed()                  
-         .setTitle('Mosica | Şarkı Seçimi')
+         .setTitle('AmilAmir Music | Şarkı Seçimi')
          .setDescription(`${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}`)
          .setFooter('Lütfen 1-10 arasında bir rakam seçiniz 10 saniye içinde liste iptal edilecektir.')
          .setColor('0x36393E'));
@@ -143,7 +143,7 @@ client.on('message', async msg => {
     .setColor('RANDOM'));
 		return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setColor('RANDOM')
-    .setTitle(" Bot İsmi | Çalan")                            
+    .setTitle(" AmilAmir Music | Çalan")                            
     .addField('Başlık', `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`, true)
     .addField("Süre", `${serverQueue.songs[0].durationm}:${serverQueue.songs[0].durations}`, true))
 	} else if (command === 'sıra') {
@@ -153,7 +153,7 @@ client.on('message', async msg => {
     .setColor('RANDOM'));
 		  return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setColor('RANDOM')
-     .setTitle('Mosica | Şarkı Kuyruğu')
+     .setTitle('AmilAmir Music | Şarkı Kuyruğu')
     .setDescription(`${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}`))
     .addField('Şu anda çalınan: ' + `${serverQueue.songs[0].title}`);
 	} else if (command === 'duraklat') {
