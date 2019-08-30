@@ -250,7 +250,7 @@ function play(guild, song) {
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
 	 serverQueue.textChannel.sendEmbed(new Discord.RichEmbed()                                   
-  .setTitle("**Bot İsmi | 🎙 Müzik Başladı**",`https://cdn.discordapp.com/avatars/473974675194511361/6bb90de9efe9fb80081b185266bb94a6.png?size=2048`)
+  .setTitle("**AmilAmir Music | 🎙 Müzik Başladı**",`https://cdn.discordapp.com/avatars/473974675194511361/6bb90de9efe9fb80081b185266bb94a6.png?size=2048`)
   .setThumbnail(`https://i.ytimg.com/vi/${song.id}/default.jpg?width=80&height=60`)
   .addField('\nBaşlık', `[${song.title}](${song.url})`, true)
   .addField("\nSes Seviyesi", `${serverQueue.volume}%`, true)
@@ -349,8 +349,8 @@ client.elevation = message => {
 
 
 client.on("message", async message => {
+var sabit = client.emojis.get(`609086032276619295`)
 
-  
   if (message.content === `<@${client.user.id}>`) {
  message.channel.sendEmbed(new Discord.RichEmbed().setDescription(`<a:sabit:601316113594449960> Hey, Benim Hakkımda Pek Bilgin Yok Gibi Gözüküyor! \n\n <a:sabit:601316113594449960> İşte Prefixim: **.** \n\n <a:sabit:601316113594449960> Eğer Komularımı Görmek İstiyorsan **.yardım** Yazman Yeterli!`).setFooter(`${message.author.username} Tarafından İstendi.`, message.author.avatarURL).setColor('GREEN'))
 
