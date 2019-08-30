@@ -348,23 +348,17 @@ client.elevation = message => {
 
 
 
-//EKSTRA KODLAR BU TARAFLARA EKLENECEK!
+client.on("message", async message => {
 
+  
+  if (message.content === `<@${client.user.id}>`) {
+ message.channel.sendEmbed(new Discord.RichEmbed().setDescription(`<a:sabit:601316113594449960> Hey, Benim Hakkımda Pek Bilgin Yok Gibi Gözüküyor! \n\n <a:sabit:601316113594449960> İşte Prefixim: **.** \n\n <a:sabit:601316113594449960> Eğer Komularımı Görmek İstiyorsan **.yardım** Yazman Yeterli!`).setFooter(`${message.author.username} Tarafından İstendi.`, message.author.avatarURL).setColor('GREEN'))
 
-
-
-
-client.on("message", message => {
-    const dmchannel = client.channels.find("name", "dm-log");
-    if (message.channel.type === "dm") {
-        if (message.author.bot) return;
-        dmchannel.sendMessage("", {embed: {
-            color: 3447003,
-            title: `Gönderen: ${message.author.tag}`,
-            description: `Bota Özelden Gönderilen DM: ${message.content}`
-        }})
-    }
+}
+  
 });
 
 
 client.login(ayarlar.token);
+
+//EKSTRA KODLAR BU TARAFLARA EKLENECEK!
