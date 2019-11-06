@@ -24,7 +24,11 @@ const moment = require('moment');
 const Jimp = require('jimp');
 require('./util/eventLoader')(client);
 
+////////////7/24
 
+
+
+////////////
 
 client.on('message', async msg => {
 
