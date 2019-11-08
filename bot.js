@@ -15,7 +15,7 @@ const http = require('http');
     setInterval(() => {
     http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
     }, 280000);
-const token = "NjE5NTQzNjkxMTg2NjY3NTMw.XXJx5w.TUjANparVQ06ln7xMLJjMws14Lw";
+const token = "token";
 const youtube = new YouTube(GOOGLE_API_KEY);
 const ytdl = require('ytdl-core');
 const prefix = ayarlar.prefix;
