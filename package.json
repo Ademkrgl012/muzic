@@ -1,5 +1,5 @@
 {
-  "name": "hello-express",
+  "name": "codare-somon",
   "version": "1.0.0",
   "description": "CodAre -somon'un altyapısıdır!",
   "main": "bot.js",
@@ -58,6 +58,8 @@
     "salmon",
     "codare",
     "codare altyapı",
-    "codare ca altyapı"
+    "codare ca altyapı",
+    "müzik altyapısı",
+    "codare müzik altyapı"
   ]
 }

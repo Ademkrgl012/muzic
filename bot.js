@@ -77,7 +77,7 @@ client.on('message', async msg => {
 	let command = msg.content.split(' ')[0].slice(ayarlar.prefix.length);
 	//command = command.slice(prefix.length)
 
-	if (command === 'çal') {
+	if (command === 'çal' || command === "p" || command === "play") {
 		const voiceChannel = msg.member.voiceChannel;
 		if (!voiceChannel) return msg.channel.send(new Discord.RichEmbed()
       .setColor('#FF0000')
@@ -141,7 +141,7 @@ client.on('message', async msg => {
 			return handleVideo(video, msg, voiceChannel);
       
 		}
-	} else if (command === 'geç') {
+	} else if (command === 'geç' || command === "s" || command === "skio") {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.send(new Discord.RichEmbed()
     .setColor('#FF0000')
     .setDescription(' :warning: | **Lütfen öncelikle sesli bir kanala katılınız**.'));
@@ -150,7 +150,7 @@ client.on('message', async msg => {
      .setTitle(' :warning: | **Hiç Bir Müzik Çalmamakta**'));                                              
 		serverQueue.connection.dispatcher.end('**Müziği Geçtim!**');
 		return undefined;
-	} else if (command === 'durdur') {
+	} else if (command === 'durdur' || command === "stop") {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.send(new Discord.RichEmbed()
     .setColor('#FF0000')
     .setDescription('**:warning: | Lütfen öncelikle sesli bir kanala katılınız.**'));
@@ -161,7 +161,7 @@ client.on('message', async msg => {
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('**Müzik Bitti**');
 		return undefined;
-	} else if (command === 'ses') {
+	} else if (command === 'ses' || command === "volume") {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.send(new Discord.RichEmbed()
     .setColor('#FF0000')
     .setDescription(':warning: **| Lütfen öncelikle sesli bir kanala katılınız.**'));
@@ -180,7 +180,7 @@ client.on('message', async msg => {
     .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **${args[1]}**`)
     .setColor('#FF0000'));     
     }               
-	} else if (command === 'çalan') {
+	} else if (command === 'çalan' || command === "song" || command === "current" || command === "şarkı") {
 		if (!serverQueue) return msg.channel.send(new Discord.RichEmbed()
     .setTitle(":warning: | **Çalan Müzik Bulunmamakta**")
     .setColor('#FF0000'));
@@ -189,7 +189,7 @@ client.on('message', async msg => {
     .setTitle("  Music | Çalan")                            
     .addField('Başlık', `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`, true)
     .addField("Süre", `${serverQueue.songs[0].durationm}:${serverQueue.songs[0].durations}`, true))
-	} else if (command === 'sıra') {
+	} else if (command === 'sıra' || command === "liste" || command === "queue") {
     let index = 0;
 		if (!serverQueue) return msg.channel.send(new Discord.RichEmbed()
     .setTitle(":warning: | **Sırada Müzik Bulunmamakta**")
@@ -199,7 +199,7 @@ client.on('message', async msg => {
      .setTitle(' Music | Şarkı Kuyruğu')
     .setDescription(`${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}`))
     .addField('Şu anda çalınan: ' + `${serverQueue.songs[0].title}`);
-	} else if (command === 'duraklat') {
+	} else if (command === 'duraklat' || command === "pause") {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
@@ -208,7 +208,7 @@ client.on('message', async msg => {
       .setColor('#FF0000'));
 		}
 		return msg.channel.send(':warning: | **Çalan Müzik Bulunmamakta**');
-	} else if (command === 'devam') {
+	} else if (command === 'devam' || command === "devam-et" || command === "devamet" || command === "resume") {
 		if (serverQueue && !serverQueue.playing) {
 			serverQueue.playing = true;
 			serverQueue.connection.dispatcher.resume();
