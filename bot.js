@@ -3,7 +3,8 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const ayarlar = require('./ayarlar.json')
 const YouTube = require('simple-youtube-api');
-const queue = new Map(); 
+const queue = new Map();
+const ffmpeg = require('ffmpeg');
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -15,7 +16,7 @@ const http = require('http');
     setInterval(() => {
     http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
     }, 280000);
-const token = "token";
+const token = "NjQzODQxOTQyNDU4OTkwNTk0.XhIPZA.7MJL130HWJT64y270TdB2PXIoVI";
 const youtube = new YouTube(GOOGLE_API_KEY);
 const ytdl = require('ytdl-core');
 const prefix = ayarlar.prefix;
@@ -137,10 +138,14 @@ client.on('message', async msg => {
    .setTitle(`:warning: Şuanki Ses Seviyesi: **${serverQueue.volume}**`)
     .setColor('RANDOM'))
 		serverQueue.volume = args[1];
-		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
+    if(args[1] > 100) {
+      msg.channel.send("100'den büyük bir ses seviyesi ayarlanamaz!")
+    } else {
+    serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **${args[1]}**`)
-    .setColor('RANDOM'));                             
+    .setColor('RANDOM'));     
+    }               
 	} else if (command === 'çalan') {
 		if (!serverQueue) return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(":warning: | **Çalan Müzik Bulunmamakta**")
