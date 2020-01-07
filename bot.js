@@ -130,7 +130,17 @@ client.on('message', async msg => {
 			return handleVideo(video, msg, voiceChannel);
       
 		}
-	} else if (command === 'geç' || command === "s" || command === "skio") {
+	} else if(command === "loop") {
+    		if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+			const playlist = await youtube.getPlaylist(url);
+			const videos = await playlist.getVideos();
+			for (const video of Object.values(videos)) {
+				const video2 = await youtube.getVideoByID(video.id);
+				await handleVideo(video2, msg, voiceChannel, true);
+			}
+			 return msg.channel.send(new Discord.RichEmbed)
+      .setTitle(`**✅ | Oynatma Listesi: **${playlist.title}** Kuyruğa Eklendi!**`)
+  } else if (command === 'geç' || command === "s" || command === "skip") {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.send(new Discord.RichEmbed()
     .setColor('#FF0000')
     .setDescription(' :warning: | **Lütfen öncelikle sesli bir kanala katılınız**.'));
