@@ -3,7 +3,7 @@ const ayarlar = require('../ayarlar.json')
 var prefix = ayarlar.prefix
 exports.run = function(client, message) {
 const embed = new Discord.RichEmbed()
-.setColor('RANDOM')
+.setColor('#FF0000')
 .setTitle('» Muzik Komut Grupları')
 .setTimestamp()
 .addField('» -Çal- Müzik Dinlersiniz', prefix + 'çal ')

@@ -23,8 +23,7 @@ const prefix = ayarlar.prefix;
 const fs = require('fs');
 const moment = require('moment');
 const Jimp = require('jimp');
-require('./util/eventLoader')(client);
-
+const chalk = require('chalk');
 ////////////7/24
 
 
@@ -46,17 +45,17 @@ client.on('message', async msg => {
 	if (command === 'çal') {
 		const voiceChannel = msg.member.voiceChannel;
 		if (!voiceChannel) return msg.channel.sendEmbed(new Discord.RichEmbed()
-      .setColor('RANDOM')
+      .setColor('#FF0000')
     .setDescription(':warning: | İlk olarak sesli bir kanala giriş yapmanız gerek.'));
 		const permissions = voiceChannel.permissionsFor(msg.client.user);
 		if (!permissions.has('CONNECT')) {
 			return msg.channel.sendEmbed(new Discord.RichEmbed()
-    .setColor('RANDOM')
+    .setColor('#FF0000')
     .setTitle(':warning: | İlk olarak sesli bir kanala giriş yapmanız gerek.'));
 		}
 		if (!permissions.has('SPEAK')) {
 			 return msg.channel.sendEmbed(new Discord.RichEmbed()
-      .setColor('RANDOM')
+      .setColor('#FF0000')
       .setTitle(':warning: | Şarkı başlatılamıyor. Lütfen mikrofonumu açınız.'));
         }
 
@@ -81,7 +80,7 @@ client.on('message', async msg => {
          .setTitle(' Music | Şarkı Seçimi')
          .setDescription(`${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}`)
          .setFooter('Lütfen 1-10 arasında bir rakam seçiniz 10 saniye içinde liste iptal edilecektir.')
-         .setColor('0x36393E'));
+         .setColor('#FF0000'));
           msg.delete(5000)
 					try {
 						var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
@@ -92,7 +91,7 @@ client.on('message', async msg => {
 					} catch (err) {
 						console.error(err);
 						 return msg.channel.sendEmbed(new Discord.RichEmbed()
-            .setColor('0x36393E')
+            .setColor('#FF0000')
             .setDescription(':warning: | **Şarkı Değeri Belirtmediğiniz İçin Seçim İptal Edilmiştir**.'));
                     }
 					const videoIndex = parseInt(response.first().content);
@@ -100,7 +99,7 @@ client.on('message', async msg => {
 				} catch (err) {
 					console.error(err);
 					return msg.channel.sendEmbed(new Discord.RichEmbed()
-          .setColor('0x36393E')
+          .setColor('#FF0000')
           .setDescription(':( | **Aradım Fakat Hiç Bir Sonuç Çıkmadı**'));
                 }
             }
@@ -109,19 +108,19 @@ client.on('message', async msg => {
 		}
 	} else if (command === 'geç') {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.sendEmbed(new Discord.RichEmbed()
-    .setColor('RANDOM')
+    .setColor('#FF0000')
     .setDescription(' :warning: | **Lütfen öncelikle sesli bir kanala katılınız**.'));
 		if (!serverQueue) return msg.channel.sendEmbed(new Discord.RichEmbed()
-     .setColor('RANDOM')
+     .setColor('#FF0000')
      .setTitle(' :warning: | **Hiç Bir Müzik Çalmamakta**'));                                              
 		serverQueue.connection.dispatcher.end('**Müziği Geçtim!**');
 		return undefined;
 	} else if (command === 'durdur') {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.sendEmbed(new Discord.RichEmbed()
-    .setColor('RANDOM')
+    .setColor('#FF0000')
     .setDescription('**:warning: | Lütfen öncelikle sesli bir kanala katılınız.**'));
 		if (!serverQueue) return msg.channel.sendEmbed(new Discord.RichEmbed()
-     .setColor('RANDOM')
+     .setColor('#FF0000')
      .setTitle(':warning: **| Hiç Bir Müzik Çalmamakta**'));                                              
 		msg.channel.send(`:stop_button: **${serverQueue.songs[0].title}** Adlı Müzik Durduruldu`);
 		serverQueue.songs = [];
@@ -129,14 +128,14 @@ client.on('message', async msg => {
 		return undefined;
 	} else if (command === 'ses') {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.sendEmbed(new Discord.RichEmbed()
-    .setColor('RANDOM')
+    .setColor('#FF0000')
     .setDescription(':warning: **| Lütfen öncelikle sesli bir kanala katılınız.**'));
 		if (!serverQueue) return msg.channel.sendEmbed(new Discord.RichEmbed()
-     .setColor('RANDOM')
+     .setColor('#FF0000')
      .setTitle(':warning:| **Hiç Bir Müzik Çalmamakta**'));                                              
 		if (!args[1]) return msg.channel.sendEmbed(new Discord.RichEmbed()
    .setTitle(`:warning: Şuanki Ses Seviyesi: **${serverQueue.volume}**`)
-    .setColor('RANDOM'))
+    .setColor('#FF0000'))
 		serverQueue.volume = args[1];
     if(args[1] > 100) {
       msg.channel.send("100'den büyük bir ses seviyesi ayarlanamaz!")
@@ -144,14 +143,14 @@ client.on('message', async msg => {
     serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **${args[1]}**`)
-    .setColor('RANDOM'));     
+    .setColor('#FF0000'));     
     }               
 	} else if (command === 'çalan') {
 		if (!serverQueue) return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(":warning: | **Çalan Müzik Bulunmamakta**")
-    .setColor('RANDOM'));
+    .setColor('#FF0000'));
 		return msg.channel.sendEmbed(new Discord.RichEmbed()
-    .setColor('RANDOM')
+    .setColor('#FF0000')
     .setTitle("  Music | Çalan")                            
     .addField('Başlık', `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`, true)
     .addField("Süre", `${serverQueue.songs[0].durationm}:${serverQueue.songs[0].durations}`, true))
@@ -159,9 +158,9 @@ client.on('message', async msg => {
     let index = 0;
 		if (!serverQueue) return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(":warning: | **Sırada Müzik Bulunmamakta**")
-    .setColor('RANDOM'));
+    .setColor('#FF0000'));
 		  return msg.channel.sendEmbed(new Discord.RichEmbed()
-    .setColor('RANDOM')
+    .setColor('#FF0000')
      .setTitle(' Music | Şarkı Kuyruğu')
     .setDescription(`${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}`))
     .addField('Şu anda çalınan: ' + `${serverQueue.songs[0].title}`);
@@ -171,7 +170,7 @@ client.on('message', async msg => {
 			serverQueue.connection.dispatcher.pause();
 			return msg.channel.sendEmbed(new Discord.RichEmbed()
       .setTitle("**:pause_button: Müzik Senin İçin Durduruldu!**")
-      .setColor('RANDOM'));
+      .setColor('#FF0000'));
 		}
 		return msg.channel.send(':warning: | **Çalan Müzik Bulunmamakta**');
 	} else if (command === 'devam') {
@@ -180,11 +179,11 @@ client.on('message', async msg => {
 			serverQueue.connection.dispatcher.resume();
 			return msg.channel.sendEmbed(new Discord.RichEmbed()
       .setTitle("**:arrow_forward: Müzik Senin İçin Devam Etmekte!**")
-      .setColor('RANDOM'));
+      .setColor('#FF0000'));
 		}
 		return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(":warning: ** | Çalan Müzik Bulunmamakta.**")
-    .setColor('RANDOM'));
+    .setColor('#FF0000'));
 	}
   
 
@@ -225,7 +224,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 			queue.delete(msg.guild.id);
 			return msg.channel.sendEmbed(new Discord.RichEmbed()
       .setTitle(`:warning: **Şarkı Sisteminde Problem Var Hata Nedeni: ${error}**`)
-      .setColor('RANDOM'))
+      .setColor('#FF0000'))
 		}
 	} else {
 		serverQueue.songs.push(song);
@@ -233,7 +232,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 		if (playlist) return undefined;
 		return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(`:arrow_heading_up:  **${song.title}** Adlı Müzik Kuyruğa Eklendi!`)
-    .setColor('RANDOM'))
+    .setColor('#FF0000'))
 	}
 	return undefined;
 }
@@ -264,7 +263,7 @@ function play(guild, song) {
   .addField('\nBaşlık', `[${song.title}](${song.url})`, true)
   .addField("\nSes Seviyesi", `${serverQueue.volume}%`, true)
   .addField("Süre", `${song.durationm}:${song.durations}`, true)
-  .setColor('RANDOM'));
+  .setColor('#FF0000'));
 }
 
 
@@ -361,11 +360,45 @@ client.on("message", async message => {
 var sabit = client.emojis.get(`609086032276619295`)
 
   if (message.content === `<@${client.user.id}>`) {
- message.channel.sendEmbed(new Discord.RichEmbed().setDescription(`<a:sabit:601316113594449960> Hey, Benim Hakkımda Pek Bilgin Yok Gibi Gözüküyor! \n\n <a:sabit:601316113594449960> İşte Prefixim: **.** \n\n <a:sabit:601316113594449960> Eğer Komularımı Görmek İstiyorsan **.yardım** Yazman Yeterli!`).setFooter(`${message.author.username} Tarafından İstendi.`, message.author.avatarURL).setColor('GREEN'))
+ message.channel.sendEmbed(new Discord.RichEmbed().setDescription(`<a:sabit:601316113594449960> Hey, Benim Hakkımda Pek Bilgin Yok Gibi Gözüküyor! \n\n <a:sabit:601316113594449960> İşte Prefixim: **!** \n\n <a:sabit:601316113594449960> Eğer Komularımı Görmek İstiyorsan **!y** Yazman Yeterli!`).setFooter(`${message.author.username} Tarafından İstendi.`, message.author.avatarURL).setColor('#FF0000'))
 
 }
   
 });
+
+
+
+
+
+client.on("message", message => {
+  let client = message.client;
+  if (message.author.bot) return;
+  if (!message.content.startsWith(ayarlar.prefix)) return;
+  let command = message.content.split(' ')[0].slice(ayarlar.prefix.length);
+  let params = message.content.split(' ').slice(1);
+  let perms = client.elevation(message);
+  let cmd;
+  if (client.commands.has(command)) {
+    cmd = client.commands.get(command);
+  } else if (client.aliases.has(command)) {
+    cmd = client.commands.get(client.aliases.get(command));
+  }
+  if (cmd) {
+    if (perms < cmd.conf.permLevel) return;
+    cmd.run(client, message, params, perms);
+  }
+})
+
+
+client.on("ready", () => {
+  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] BOT: Aktif, Komutlar yüklendi!`);
+  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] BOT: ${client.user.username} ismi ile giriş yapıldı!`);
+  client.user.setStatus("online");
+  client.user.setActivity(`${prefix}yardım + ${client.guilds.size} sunucu + ${client.users.size} kullanıcı`);
+  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] BOT: Oyun ismi ayarlandı!`);
+  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] BOT: Şu an ` + client.channels.size + ` adet kanala, ` + client.guilds.size + ` adet sunucuya ve ` + client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString() + ` kullanıcıya hizmet veriliyor!`);
+})
+
 
 
 client.login(ayarlar.token);
