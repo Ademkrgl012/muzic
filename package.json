@@ -1,5 +1,5 @@
 {
-  "name": "Left Army :)",
+  "name": "s",
   "version": "1.0.0",
   "description": "Left Army ♾ 𐱅𐰇𐰼𐰚 Alt Yapısıdır",
   "main": "bot.js",
@@ -31,9 +31,7 @@
     "moment": "^2.24.0",
     "moment-duration-format": "^2.2.2",
     "ms": "^2.1.2",
-    "node-opus": "^0.3.2",
     "node-superfetch": "^0.1.9",
-    "opusscript": "^0.0.7",
     "parse-ms": "^2.0.0",
     "phin": "^3.4.1",
     "qrcode": "^1.4.4",
@@ -52,7 +50,5 @@
     "node": "11.x"
   },
   "license": "MIT",
-  "keywords": [
-    
-  ]
+  "keywords": []
 }
