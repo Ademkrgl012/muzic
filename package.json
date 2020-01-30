@@ -1,7 +1,7 @@
 {
-  "name": "codare-somon",
+  "name": "Left Army :)",
   "version": "1.0.0",
-  "description": "CodAre -somon'un altyapısıdır!",
+  "description": "Left Army ♾ 𐱅𐰇𐰼𐰚 Alt Yapısıdır",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
@@ -53,13 +53,6 @@
   },
   "license": "MIT",
   "keywords": [
-    "somon",
-    "balıq",
-    "salmon",
-    "codare",
-    "codare altyapı",
-    "codare ca altyapı",
-    "müzik altyapısı",
-    "codare müzik altyapı"
+    
   ]
 }
