@@ -45,10 +45,10 @@ client.on("message", message => {
 
 
 client.on("ready", () => {
-  console.log(`[somon] Bütün komutlar başarıyla yüklendi!`);
+  console.log(`CodePack - Müzik  Bütün komutlar başarıyla yüklendi!`);
   client.user.setStatus("idle");
-  client.user.setActivity(`${prefix}yardım + ${client.guilds.size} sunucu + ${client.users.size} kullanıcı`); //botun oynuyor kısmı
-  console.log(`[somon] Bot AKTİF! Şu an ` + client.channels.size + ` adet kanala, ` + client.guilds.size + ` adet sunucuya ve ` + client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString() + ` kullanıcıya hizmet veriliyor!`);
+  client.user.setActivity(`${prefix}yardım`); //botun oynuyor kısmı
+  console.log(`CodePack - Müzik Şu an ` + client.channels.size + ` adet kanala, ` + client.guilds.size + ` adet sunucuya ve ` + client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString() + ` kullanıcıya hizmet veriliyor!`);
 })
 
 
