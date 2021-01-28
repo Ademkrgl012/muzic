@@ -7,6 +7,7 @@
     "start": "node bot.js"
   },
   "dependencies": {
+    "@discordjs/opus": "^0.4.0",
     "array-sort": "^1.0.0",
     "brawlstars": "^1.2.4",
     "canvas": "^2.6.1",
