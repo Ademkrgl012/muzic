@@ -405,3 +405,4 @@ var sabit = client.emojis.get(`609086032276619295`)
 client.login(process.env.token);
 
 //EKSTRA KODLAR BU TARAFLARA EKLENECEK!
+//SYNX CODE
